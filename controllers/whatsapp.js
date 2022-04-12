@@ -16,7 +16,9 @@ exports.getIndex = asyncHandler(async (req, res, next) => {
   });
 });
 
-/** send text message */
+// @desc        send text message
+// @route       POST /api/v1/whatsapp/send-text-message
+// @access      Public
 exports.sendTextMessage = asyncHandler(async (req, res, next) => {
   const message = req.body.message;
   const number = phoneNumberFormatter(req.body.number);
@@ -39,7 +41,9 @@ exports.sendTextMessage = asyncHandler(async (req, res, next) => {
     });
 });
 
-/** send message with media url */
+// @desc        Send message with media url
+// @route       POST /api/v1/whatsapp/send-media-with-url
+// @access      Public
 exports.sendMediaWithUrl = asyncHandler(async (req, res, next) => {
   const message = req.body.message;
   const fileUrl = req.body.url;
