@@ -2,7 +2,7 @@ const {
   Client,
   Location,
   List,
-  Buttons,
+  MessageMedia,
   LocalAuth,
 } = require("whatsapp-web.js");
 const { postData } = require("../utils/httpRequest");
@@ -35,6 +35,8 @@ client.on("ready", () => {
 client.on("message", async (msg) => {
   console.log("onMessage");
   // console.log(msg);
+  // client.sendMessage(msg.from, "haloo");
+  // return;
   /** ignore msg dari group */
   var split = msg.from.split("@");
   if (split[1].includes("g.us")) return;
@@ -67,21 +69,21 @@ client.on("message", async (msg) => {
       // msg.reply("haloo");
 
       var res = await postData(msg.from, msg.body);
-      msg.reply(res);
-      // client.sendMessage(msg.from, res);
+      // msg.reply(res);
+      client.sendMessage(msg.from, res);
     }
 
     // msg.reply(res);
   } else {
-    msg.reply("haloo");
-    // if (msg.body == "" || msg.type == "e2e_notification") {
-    // } else {
-    //   if (msg.body != "" || msg.type != "e2e_notification") {
-    //     msg.reply(
-    //       "Mohon maaf, saat ini pesan media yang diperbolehkan berupa image atau gambar."
-    //     );
-    //   }
-    // }
+    // msg.reply("haloo");
+    if (msg.body == "" || msg.type == "e2e_notification") {
+    } else {
+      if (msg.body != "" || msg.type != "e2e_notification") {
+        msg.reply(
+          "Mohon maaf, saat ini pesan media yang diperbolehkan berupa image atau gambar."
+        );
+      }
+    }
   }
 });
 
