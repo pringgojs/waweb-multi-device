@@ -12,7 +12,7 @@ const checkRegisteredNumber = async function (number) {
 exports.getIndex = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
-    data: process.env.URL_ENDPOINT,
+    data: "It's works!",
   });
 });
 
