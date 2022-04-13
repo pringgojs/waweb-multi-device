@@ -34,9 +34,12 @@ client.on("ready", () => {
 
 client.on("message", async (msg) => {
   console.log("onMessage");
-  // console.log(msg);
+  console.log(msg);
   // client.sendMessage(msg.from, "haloo");
   // return;
+  if (msg.from == "status@broadcast") {
+    return;
+  }
   /** ignore msg dari group */
   var split = msg.from.split("@");
   if (split[1].includes("g.us")) return;
