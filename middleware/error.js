@@ -6,7 +6,7 @@ const errorHandler = (err, req, res, next) => {
   };
 
   error.message = err.message;
-  // console.log(err.stack.red)
+  console.log(err.message);
   console.log(err.name);
 
   // Mongoose bad objectID

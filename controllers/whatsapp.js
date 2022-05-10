@@ -3,6 +3,7 @@ const asyncHandler = require("../middleware/async");
 const { MessageMedia } = require("whatsapp-web.js");
 const client = require("../utils/client");
 const axios = require("axios");
+const https = require("https");
 const { phoneNumberFormatter } = require("../utils/formatter");
 const checkRegisteredNumber = async function (number) {
   const isRegistered = await client.isRegisteredUser(number);
@@ -46,7 +47,9 @@ exports.sendTextMessage = asyncHandler(async (req, res, next) => {
 // @access      Public
 exports.sendMediaWithUrl = asyncHandler(async (req, res, next) => {
   const message = req.body.message;
+  console.log(message);
   const fileUrl = req.body.url;
+  console.log(fileUrl);
   const number = phoneNumberFormatter(req.body.number);
   const isRegisteredNumber = await checkRegisteredNumber(number);
 
@@ -54,16 +57,37 @@ exports.sendMediaWithUrl = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`The number is not registered`, 500));
   }
 
+  // At request level
+  const agent = new https.Agent({
+    rejectUnauthorized: false,
+  });
+
   let mimetype;
   const attachment = await axios
     .get(fileUrl, {
       responseType: "arraybuffer",
+      httpsAgent: agent,
+      crossDomain: true,
     })
     .then((response) => {
+      console.log(response.data);
       mimetype = response.headers["content-type"];
-      return response.data.toString("base64");
+      console.log("mime");
+      console.log(mimetype);
+      return response.data;
+      // return response.data.toString("base64");
+    })
+    .catch((error) => {
+      if (error.response) {
+        console.log("error ges");
+        console.log(error.response);
+      }
     });
 
+  console.log("attach");
+  console.log(attachment);
+
+  return false;
   const media = new MessageMedia(mimetype, attachment, "Media");
 
   client

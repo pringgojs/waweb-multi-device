@@ -17,6 +17,7 @@
     "colors": "^1.4.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "https": "^1.0.0",
     "morgan": "^1.10.0",
     "slugify": "^1.6.4",
     "whatsapp-web.js": "^1.16.5"
