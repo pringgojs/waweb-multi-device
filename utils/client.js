@@ -9,7 +9,7 @@ const { postData } = require("../utils/httpRequest");
 
 const client = new Client({
   authStrategy: new LocalAuth(),
-  puppeteer: { headless: false },
+  puppeteer: { headless: true },
 });
 
 client.initialize();
