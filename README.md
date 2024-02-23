@@ -11,3 +11,10 @@ This project serves as a starter kit for a Whatsapp web forwarder. In explanatio
 - Run `npm run start` to initiate the process.
 - Scan the Whatsapp QR Code displayed on the screen.
 - The application is ready for use.
+
+## Fitur
+
+- Receive text messages
+- Receive multimedia messages
+- API to send text messages
+- WIP: API to send multimedia messages
