@@ -9,7 +9,7 @@ const { postData } = require("../utils/httpRequest");
 
 const client = new Client({
   authStrategy: new LocalAuth(),
-  puppeteer: { headless: true },
+  puppeteer: { headless: false },
 });
 
 client.initialize();
@@ -54,7 +54,7 @@ client.on("message", async (msg) => {
     // send photo
     const attachmentData = await msg.downloadMedia();
     if (attachmentData.mimetype == "image/jpeg") {
-      console.log(attachmentData);
+      // console.log(attachmentData);
       var res = await postData(msg.from, attachmentData);
       client.sendMessage(msg.from, res);
       // msg.reply(res);

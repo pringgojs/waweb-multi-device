@@ -46,6 +46,10 @@ exports.sendTextMessage = asyncHandler(async (req, res, next) => {
 // @access      Public
 exports.sendMediaWithUrl = asyncHandler(async (req, res, next) => {
   const message = req.body.message;
+  var filename = "Media";
+  // if (req.body.filename) {
+  //   filename = req.body.filename;
+  // }
   const fileUrl = req.body.url;
   const number = phoneNumberFormatter(req.body.number);
   const isRegisteredNumber = await checkRegisteredNumber(number);
@@ -64,7 +68,7 @@ exports.sendMediaWithUrl = asyncHandler(async (req, res, next) => {
       return response.data.toString("base64");
     });
 
-  const media = new MessageMedia(mimetype, attachment, "Media");
+  const media = new MessageMedia(mimetype, attachment, filename);
 
   client
     .sendMessage(number, media, {
@@ -77,6 +81,8 @@ exports.sendMediaWithUrl = asyncHandler(async (req, res, next) => {
       });
     })
     .catch((err) => {
+      console.log("error");
+
       return next(new ErrorResponse(err, 500));
     });
 });
