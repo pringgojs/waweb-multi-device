@@ -20,5 +20,9 @@
     "morgan": "^1.10.0",
     "slugify": "^1.6.4",
     "whatsapp-web.js": "^1.16.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pringgojs/waweb-multi-device.git"
   }
 }
