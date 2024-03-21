@@ -1,5 +1,5 @@
 {
-  "name": "forwarder-whatsapp-web",
+  "name": "@pringgojs/forwarder-whatsapp-web",
   "version": "1.1.6",
   "description": "Whatsapp web forwarder",
   "main": "server.js",
@@ -17,12 +17,20 @@
     "colors": "^1.4.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "forwarder-whatsapp-web": "^1.1.6",
     "morgan": "^1.10.0",
     "slugify": "^1.6.4",
     "whatsapp-web.js": "^1.16.5"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pringgojs/waweb-multi-device.git"
+    "url": "git+https://github.com/pringgojs/waweb-multi-device.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pringgojs/waweb-multi-device/issues"
+  },
+  "homepage": "https://github.com/pringgojs/waweb-multi-device#readme",
+  "directories": {
+    "test": "test"
   }
 }
